@@ -246,6 +246,11 @@ public:
 		memcpy(arg_in6->s6_addr, in6.s6_addr, sizeof(in6.s6_addr));
 		}
 
+	void CopyIPv6(const in6_addr& arg_in6) const
+		{
+		memcpy((void*)&arg_in6.s6_addr, in6.s6_addr, sizeof(in6.s6_addr));
+		}
+
 	/**
 	 * Retrieves a copy of the IPv4 raw byte representation of the address.
 	 * The caller should verify the address is of the IPv4 family type
@@ -257,6 +262,11 @@ public:
 	void CopyIPv4(in4_addr* in4) const
 		{
 		memcpy(&in4->s_addr, &in6.s6_addr[12], sizeof(in4->s_addr));
+		}
+
+	void CopyIPv4(const in4_addr& in4) const
+		{
+		memcpy((void*)&in4.s_addr, &in6.s6_addr[12], sizeof(in4.s_addr));
 		}
 
 	/**

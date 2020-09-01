@@ -232,15 +232,15 @@ void PIA_TCP::FirstPacket(bool is_orig, const IP_Hdr* ip)
 
 		if ( is_orig )
 			{
-			Conn()->OrigAddr().CopyIPv4(&ip4->ip_src);
-			Conn()->RespAddr().CopyIPv4(&ip4->ip_dst);
+			Conn()->OrigAddr().CopyIPv4(ip4->ip_src);
+			Conn()->RespAddr().CopyIPv4(ip4->ip_dst);
 			tcp4->th_sport = htons(Conn()->OrigPort());
 			tcp4->th_dport = htons(Conn()->RespPort());
 			}
 		else
 			{
-			Conn()->RespAddr().CopyIPv4(&ip4->ip_src);
-			Conn()->OrigAddr().CopyIPv4(&ip4->ip_dst);
+			Conn()->RespAddr().CopyIPv4(ip4->ip_src);
+			Conn()->OrigAddr().CopyIPv4(ip4->ip_dst);
 			tcp4->th_sport = htons(Conn()->RespPort());
 			tcp4->th_dport = htons(Conn()->OrigPort());
 			}
